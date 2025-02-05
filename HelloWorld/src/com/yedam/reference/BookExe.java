@@ -1,153 +1,141 @@
-/*
- * 도서명, 저자, (조회)출판사, 판매가격
- */
 package com.yedam.reference;
+/*
+ * << 도서명, 저자, 출판사, 판매가격 >>
+ */
 
 import java.util.Scanner;
 
 public class BookExe {
+
+	static Book[] bookRepository = new Book[100];
+
+	// 저장공간에 값을 초기값을 생성.
 	public static void init() {
-		// 초기 데이터
-		bookRepository[0] = new Book("책1", "저자1", "회사1", 30000);
-		bookRepository[1] = new Book("책2", "저자2", "회사2", 20000);
-		bookRepository[2] = new Book("책3", "저자3", "회사3", 27000);
-		bookRepository[3] = new Book("책4", "저자4", "회사4", 10000);
+		// 초기데이터.
+		bookRepository[0] = new Book("이것이   자바다", "신용권", "한빛미디어", 30000);
+		bookRepository[1] = new Book("자바스크립트기초", "김기초", "한빛미디어", 20000);
+		bookRepository[2] = new Book("혼자공부하는자바", "김자바", "자바출판사", 25000);
+	} // end of init()
 
-	}
-
-	// case 1
+	// 목록출력.
 	public static void printList() {
-		System.out.println("전체목록 출력");
-		System.out.println("도서명    저자    춢판사   가격");
-		System.out.println("------------------------------");
+		System.out.println("도서명        저자    가격");
+		System.out.println("========================");
 		for (int i = 0; i < bookRepository.length; i++) {
 			if (bookRepository[i] != null) {
 				System.out.println(bookRepository[i].showBookInfo());
 			}
 		}
-		System.out.println("------------------------------");
-	} // case 1 end
+		System.out.println("========================");
+	} // end of printList()
 
-	// case 2
+	static Scanner scn = new Scanner(System.in);
+
+	// 도서등록.
 	public static void addBook() {
-		System.out.print("도서명을 입력>");
-		String name = sc.nextLine();
-		System.out.print("저자 입력>");
-		String auther = sc.nextLine();
-		System.out.print("출판사를 입력>");
-		String company = sc.nextLine();
-		System.out.print("가격을 입력>");
-		int price = Integer.parseInt(sc.nextLine());
+		// 등록하기.
+		System.out.print("도서명 입력>>");
+		String name = scn.nextLine();
+		System.out.print("저자 입력>>");
+		String author = scn.nextLine();
+		System.out.print("출판사 입력>>");
+		String press = scn.nextLine();
+		System.out.print("가격 입력>>");
+		int price = Integer.parseInt(scn.nextLine());
+
 		for (int i = 0; i < bookRepository.length; i++) {
 			if (bookRepository[i] == null) {
-				bookRepository[i] = new Book(name, auther, company, price);
-				System.out.println("등록완료");
-				break;
+				bookRepository[i] = new Book(name, author, press, price);
+				System.out.println("등록완료.");
+				break; // for 종료.
 			}
-
 		}
-	} // case 2 end
+	} // end of addBook()
 
-	// case 3
+	// 목록(출판사)
 	public static void searchList() {
-		System.out.print("출판사 조회 >");
-		String press = sc.nextLine();
-		boolean end = false;
+		System.out.print("출판사 입력>>");
+		String press = scn.nextLine();
+
+		System.out.println("도서명        저자    가격");
+		System.out.println("========================");
 		for (int i = 0; i < bookRepository.length; i++) {
-			if (bookRepository[i] != null && bookRepository[i].getCompany().equals(press)) {
+			if (bookRepository[i] != null && //
+					bookRepository[i].getBookPress().equals(press)) {
 				System.out.println(bookRepository[i].showBookInfo());
 			}
-
 		}
-		
-	} // case 3 end
+		System.out.println("========================");
+	} // end of searchList()
 
-	// case 4
+	// 가격수정.
 	public static void modifyBook() {
-		System.out.print("수정할 도서명:");
-		String newName = sc.nextLine();
-		System.out.print("수정할 가격:");
-		int newPrice = Integer.parseInt(sc.nextLine());
-		boolean isExist = false;
-
+		System.out.print("도서명 입력>>");
+		String name = scn.nextLine();
+		System.out.print("가격 입력>>");
+		int price = Integer.parseInt(scn.nextLine());
+		// 도서명으로 검색 => 입력값으로 필드변경.
+		boolean isExist = false; //
 		for (int i = 0; i < bookRepository.length; i++) {
-			if (bookRepository[i] != null && bookRepository[i].getBookName().equals(newName)) {
-				bookRepository[i].price = newPrice;
-				System.out.println("수정완료");
+			if (bookRepository[i] != null //
+					&& bookRepository[i].getBookTitle().equals(name)) {
+				bookRepository[i].setBookPrice(price);
+				System.out.println("수정완료.");
 				isExist = true;
-				break;
+				break; // 수정완료되면 반복문 종료.
 			}
-		}
+		} // end of for.
 		if (!isExist) {
-			System.out.println("찾는 도서 없음");
+			System.out.println("찾는 도서가 없습니다.");
 		}
-	} // case 4 end
-	
-	//case 5 
+	} // end of modifyBook()
+
+	// 상세조회.
 	public static void showDetail() {
-		System.out.print("도서명 입력>> ");
-		name = sc.nextLine();
+		System.out.print("도서명 입력>>");
+		String name = scn.nextLine();
 		Calculator cal = new Calculator();
 		cal.getBookInfo(name, bookRepository).showDetailInfo();
-//		for (int i = 0; i < bookRepository.length; i++) {
-//			if (bookRepository[i] != null && bookRepository[i].getBookName().equals(name)) {
-//				bookRepository[i].showDetailInfo();
-//				break;
-//			}
-//		}
+		System.out.println("======================================");
 
-	} //case 5 end
-	
-	
-	static String name;
-	static Scanner sc = new Scanner(System.in);
-	static Book[] bookRepository = new Book[100];
+	} // end of showDetail()
 
 	public static void main(String[] args) {
-		init();
+		init(); // 기초데이터 생성.
+
 		boolean run = true;
-
-		// 1.전체목록 2.도서등록 3.조회(출판사) 9.종료
-
 		while (run) {
-			System.out.println("1.전체목록 2.도서등록 3.조회(출판사) 4.수정 5.상세조회 9.종료");
-			System.out.print("메뉴를 입력하시오 >>");
-			int menu = Integer.parseInt(sc.nextLine());
+			System.out.println("1.전체목록 2.도서등록 3.조회(출판사) 4.금액수정 5.상세조회 9.종료");
+			System.out.print("메뉴를 선택하세요> ");
+			int menu = Integer.parseInt(scn.nextLine());
+
 			switch (menu) {
+			case 1: // 목록출력. 도서명, 저자, 가격
+				printList(); break;
 
-			case 1:
-				printList();
-				break;
-			// case 1 end
+			case 2: // 입력.
+				addBook(); break; // switch case 종료.
 
-			case 2:
-				addBook();
-				break;
-			// case 2 end
+			case 3: // 조회(출판사)
+				searchList(); break;
 
-			case 3:
-				searchList();
-				break;
-			// case 3 end
+			case 4: // 수정.
+				modifyBook(); break;
 
-			case 4:
-				modifyBook();
-				break;
-
-			case 5: // 상세조회
-				showDetail();
-				break;
+			case 5: // 상세조회.
+				showDetail(); break;
 
 			case 9:
-				System.out.println("end program");
-				run = false;
-				break;
+				System.out.println("프로그램을 종료합니다.");
+				run = false; break;
+
 			default:
-				System.out.println("다시 시작하세요.");
-				// case 9 end
+				System.out.println("메뉴를 다시 선택하세요.");
 			}
 
-		}
-		sc.close();
-	} // end of main
+		} // end of while.
+		System.out.println("end of prog.");
+
+	} // end of main.
+
 }

@@ -1,67 +1,72 @@
 package com.yedam.reference;
 
-public class Book { // 필드
-	private String bookName;
-	private String writer;
-	private String company;
-	int price;
+/*
+ * << 도서명, 저자, 출판사, 판매가격 >>
+ */
+public class Book {
+	// 필드.
+	private String bookTitle;
+	private String bookAuthor;
+	private String bookPress;
+	private int bookPrice;
 
-	// public, default, private => 접근지시자(access modifier)
-	// 생성자
-	public Book(String bookName, String writer, String company, int price) {
-		this.bookName = bookName;
-		this.writer = writer;
-		this.company = company;
-		this.price = price;
+	// public, default, private => 접근제한자(access modifier)
+	// 생성자.
+	public Book(String bookTitle, String bookAuthor, String bookPress, int bookPrice) {
+		this.bookTitle = bookTitle;
+		this.bookAuthor = bookAuthor;
+		this.bookPress = bookPress;
+		this.bookPrice = bookPrice;
 	}
 
 	// 제목, 저자, 가격
-	String showBookInfo() {
-		return bookName + " " + writer + " " + company + " " + price;
+	public String showBookInfo() {
+		return bookTitle + "  " + bookAuthor + "  " + bookPrice;
 	}
 
-	void showDetailInfo() {
-		// 도서명 : 이것이 자바다 출판사 : 한빛미디어
-		// 저자 : 신용권 가격 : 10000
-		String strFormat = "도서명: %1s\t저 자: %6s\n 출판사: %3s\t\t가 격: %2d 원\n";
-		System.out.printf(strFormat, bookName, writer, company, price);
+	public void showDetailInfo() {
+		// 도서명: 이것이 자바다 출판사: 한빛미디어
+		// 저 자: 신용권 가 격: 25000 원
+		String strFormat = " 도서명: %10s\t출판사: %6s\n 저 자: %3s\t\t가 격: %5d 원\n";
+		System.out.printf(strFormat, bookTitle, bookPress, bookAuthor, bookPrice);
 	}
 
-	public void setprice(int price) {
-		if (price < 0) {
-			this.price = 0;
+	// setter.
+	public void setBookPrice(int bookPrice) {
+		if (bookPrice < 0) {
+			this.bookPrice = 0;
 			return;
 		}
-		this.price = price;
+		this.bookPrice = bookPrice;
 	}
 
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setBookAuthor(String bookAuthor) {
+		this.bookAuthor = bookAuthor;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setBookPress(String bookPress) {
+		this.bookPress = bookPress;
 	}
 
-	// getter
-	public String getBookName() {
-		return bookName;
+	// getter.
+	public String getBookTitle() {
+		return bookTitle;
 	}
 
-	public String getWriter() {
-		return writer;
+	public String getBookAuthor() {
+		return bookAuthor;
 	}
 
-	public String getCompany() {
-		return company;
+	public String getBookPress() {
+		return bookPress;
 	}
 
-	public int getPrice() {
-		return price;
+	public int getBookPrice() {
+		return bookPrice;
 	}
 
 }
