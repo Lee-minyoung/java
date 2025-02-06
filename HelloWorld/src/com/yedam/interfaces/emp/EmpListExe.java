@@ -45,7 +45,7 @@ public class EmpListExe implements EmpDAO {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-
+				// 급여변경을 안하려고 엔터만 입력했을때에는 급여변경 안함
 				if (emp.getSalary() != 0) {
 					empList.get(i).setSalary(emp.getSalary());
 				}
@@ -72,14 +72,13 @@ public class EmpListExe implements EmpDAO {
 		Employee[] result = new Employee[10];
 		int idx = 0;
 
-		/*for (int i = 0; i < empList.size(); i++) {
-			if (empList.get(i).getSalary() >= emp.getSalary()) {
-				result[idx] = empList.get(i);
-				idx++; // 0부터 1씩 증가되도록
-			}
-		}*/
-		
-		for(int i = 0; i < empList.size(); i++) {
+		/*
+		 * for (int i = 0; i < empList.size(); i++) { if (empList.get(i).getSalary() >=
+		 * emp.getSalary()) { result[idx] = empList.get(i); idx++; // 0부터 1씩 증가되도록 } }
+		 */
+		String name = emp.getEmpName();
+		for (int i = 0; i < empList.size(); i++) {
+			//index 사용
 			if (empList.get(i).getEmpName().indexOf(emp.getEmpName()) > -1) {
 				result[idx] = empList.get(i);
 				idx++; // 0부터 1씩 증가되도록
