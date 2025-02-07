@@ -67,6 +67,7 @@ public class StudentApp {
 		String name = scn.nextLine();
 		System.out.print("학생 키 입력>> ");
 		Double height = Double.parseDouble(scn.nextLine());
+		
 		System.out.print("학생 몸무게 입력>> ");
 		Double weight = Double.parseDouble(scn.nextLine());
 		System.out.print("학생 점수 입력>> ");
