@@ -67,21 +67,22 @@ public class EmpListExe implements EmpDAO {
 	}
 
 	@Override
-	public Employee[] search(Employee emp) {
+	public List<Employee> search(Employee emp) {
 		// sal 보다 급여가 많은
-		Employee[] result = new Employee[10];
+		List<Employee> result = new ArrayList<Employee>();
 		int idx = 0;
 
 		/*
 		 * for (int i = 0; i < empList.size(); i++) { if (empList.get(i).getSalary() >=
 		 * emp.getSalary()) { result[idx] = empList.get(i); idx++; // 0부터 1씩 증가되도록 } }
 		 */
+		//int salary = 
 		String name = emp.getEmpName();
+		
 		for (int i = 0; i < empList.size(); i++) {
 			//index 사용
 			if (empList.get(i).getEmpName().indexOf(emp.getEmpName()) > -1) {
-				result[idx] = empList.get(i);
-				idx++; // 0부터 1씩 증가되도록
+				result.add(empList.get(i));
 			}
 		}
 		return result;

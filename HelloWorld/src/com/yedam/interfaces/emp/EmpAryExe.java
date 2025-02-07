@@ -2,6 +2,8 @@ package com.yedam.interfaces.emp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * 배열활용
@@ -63,9 +65,9 @@ public class EmpAryExe implements EmpDAO {
 	}
 
 	@Override
-	public Employee[] search(Employee emp) {
+	public List<Employee> search(Employee emp) {
 		// sal 보다 급여가 많은
-		Employee[] result = new Employee[10];
+		List<Employee> result = new ArrayList<Employee>();
 		int idx = 0;
 
 		/*
@@ -73,10 +75,11 @@ public class EmpAryExe implements EmpDAO {
 		 * emp.getSalary()) { result[idx] = empList.get(i); idx++; // 0부터 1씩 증가되도록 } }
 		 */
 		String name = emp.getEmpName();
+		
 		for (int i = 0; i < employees.length; i++) {
 			// index 사용
 			if (employees[i] != null && employees[i].getEmpName().indexOf(emp.getEmpName()) > -1) {
-				result[idx] = employees[i];
+				result.add(employees[i]);
 				idx++; // 0부터 1씩 증가되도록
 			}
 			
