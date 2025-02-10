@@ -22,16 +22,16 @@ public class Employee {
 	public Employee() {
 	}
 
-	public Employee(int empNo, String empName, String telNo) {
+	public Employee(int empNo, String empName, String telNo, Date hireDate, int salary) {
 		this.empNo = empNo;
 		this.empName = empName;
 		this.telNo = telNo;
 		this.hireDate = new Date();
-		this.salary = 250;
+		this.salary = salary;
 	}
 
 	public Employee(int empNo, String empName, String telNo, String hireDate, int salary) {
-		this(empNo, empName, telNo);
+		this();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			this.hireDate = sdf.parse(hireDate);

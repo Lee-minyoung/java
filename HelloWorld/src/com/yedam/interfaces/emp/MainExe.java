@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.yedam.interfaces.EmpDBExe;
+
 /*
  * 사원관리 App v.1
  * 실행클래스: MainExe
@@ -13,7 +15,7 @@ import java.util.Scanner;
 
 public class MainExe {
 	static Scanner scn = new Scanner(System.in);
-	static EmpDAO dao = new EmpAryExe();
+	static EmpDAO dao = new EmpDBExe();
 
 	public static void main(String[] args) {
 
